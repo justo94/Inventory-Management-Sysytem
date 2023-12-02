@@ -1,0 +1,45 @@
+<!-- update_inventory.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Inventory</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Update Inventory</h1>
+        <p class="text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-info">Home</a>
+            <a href="{{ url_for('inventory') }}" class="btn btn-info">Inventory</a>
+            <a href="{{ url_for('orders') }}" class="btn btn-info">Orders</a>
+            {% if current_user.role == 'accountant' %}
+            <a href="{{ url_for('accounting') }}" class="btn btn-info">Accounting</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {% for category, message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('update_inventory') }}" method="post" class="form-inline">
+            <div class="form-group">
+                <label for="rfid" class="control-label">Enter RFID:</label>
+                <input type="text" id="rfid" name="rfid" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update Inventory" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <!-- Bootstrap 4 Javascripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

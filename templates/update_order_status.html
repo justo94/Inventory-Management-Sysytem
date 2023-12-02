@@ -1,0 +1,53 @@
+<!-- update_order_status.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Order Status</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Update Order Status</h1>
+        <p class="text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-info">Home</a>
+            <a href="{{ url_for('inventory') }}" class="btn btn-info">Inventory</a>
+            <a href="{{ url_for('orders') }}" class="btn btn-info">Orders</a>
+            {% if current_user.role == 'accountant' %}
+            <a href="{{ url_for('accounting') }}" class="btn btn-info">Accounting</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert alert-success">
+            {% for category, message in messages %}
+            {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('update_order_status', order_id=order.id) }}" method="post" class="form-horizontal">
+            <div class="form-group">
+                <label for="status" class="col-sm-2 control-label">Select Status:</label>
+                <div class="col-sm-10">
+                    <select id="status" name="status" class="form-control" required>
+                        <option value="Pending" {% if order.status == 'Pending' %}selected{% endif %}>Pending</option>
+                        <option value="Confirmed" {% if order.status == 'Confirmed' %}selected{% endif %}>Confirmed</option>
+                        <option value="Delivered" {% if order.status == 'Delivered' %}selected{% endif %}>Delivered</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" value="Update Order Status" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Bootstrap 4 Javascripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

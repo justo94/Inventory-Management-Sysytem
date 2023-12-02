@@ -1,0 +1,27 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Midlands Limited Kenya</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Midlands Limited Kenya</h1>
+            <p class="lead">The best choice for pre-processed foods.</p>
+            <hr class="my-4">
+            <p>This is an inventory management application for Midlands Limited Kenya, a potato processing industry.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('register') }}" role="button">Register Here</a>
+                <a class="btn btn-secondary btn-lg" href="{{ url_for('login') }}" role="button">Login</a>
+            </p>
+        </div>
+    </div>
+    <!-- Bootstrap 4 Javascripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Midlands Limited Kenya</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('inventory') }}">Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('orders') }}">Orders</a>
+                    </li>
+                        {% if current_user.role == 'accountant' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('accounting') }}">Accounting</a>
+                            </li>
+                        {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome, {{ current_user.username }}!</h1>
+            <p class="lead">You are logged in as {{ current_user.role }}.</p>
+            <hr class="my-4">
+            <p>This is an inventory management application for Midlands Limited Kenya, a potato processing industry.</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('inventory') }}" role="button">View Inventory</a>
+                <a class="btn btn-secondary btn-lg" href="{{ url_for('orders') }}" role="button">View Orders</a>
+            </p>
+        </div>
+    </div>
+    <!-- Bootstrap 4 Javascripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
